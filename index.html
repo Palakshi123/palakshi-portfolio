@@ -1,1 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Palakshi Choksi | Product Data Scientist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#ffffff;--card:#ffffff;--text:#202124;--muted:#5f6368;--accent:#1a73e8;--accent2:#5b8def;--border:#dadce0;--tag-bg:#e8f0fe;--tag-color:#1a73e8;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:"DM Sans",sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden;}
+    a{color:var(--accent);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+    .container{width:min(1100px,92%);margin:0 auto;}
+    header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:opacity 0.25s ease,transform 0.25s ease;}
+    header.hidden{opacity:0;pointer-events:none;transform:translateY(-12px);}
+    nav{display:flex;align-items:center;justify-content:flex-start;padding:16px 0;gap:18px;}
+    .logo{font-family:"Instrument Serif",serif;font-size:1.2rem;color:var(--accent);}
+    .nav-links{display:flex;gap:18px;font-size:1.05rem;font-weight:400;justify-content:flex-start;flex:1;margin-left:8px;font-family:"Instrument Serif",serif;}
+    .nav-links a{color:var(--accent);transition:color 0.2s;font-family:"Instrument Serif",serif;}
+    .nav-links a:hover{color:var(--accent);text-decoration:none;}
+    .medium-nav-link{display:inline-flex;align-items:center;gap:7px;padding:0;background:transparent;box-shadow:none;border:none;}
+    
+    .floating-nav{position:fixed;top:18px;left:50%;transform:translate(-50%,-18px);z-index:200;background:rgba(255,255,255,0.96);border:1px solid var(--border);border-radius:999px;box-shadow:0 4px 14px rgba(60,64,67,0.22);padding:8px 12px;display:flex;gap:6px;align-items:center;opacity:0;pointer-events:none;transition:opacity 0.25s ease,transform 0.25s ease;backdrop-filter:blur(16px);}
+    .floating-nav.visible{opacity:1;pointer-events:auto;transform:translate(-50%,0);}
+    .floating-nav a{font-family:"Instrument Serif",serif;color:var(--accent);font-size:1rem;font-weight:400;padding:8px 14px;border-radius:999px;text-decoration:none;transition:background 0.2s ease,color 0.2s ease;}
+    .floating-nav a:hover{background:#f1f3f4;color:var(--accent);text-decoration:none;}
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:60px;align-items:center;padding:90px 0 80px;}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:22px;}
+    .hero-eyebrow::before{content:"";width:28px;height:2px;background:var(--accent);border-radius:2px;}
+    h1{font-family:"Instrument Serif",serif;font-size:clamp(2.6rem,4.5vw,4.2rem);line-height:1.1;letter-spacing:-0.02em;color:var(--accent);margin-bottom:24px;}
+    h1 em{font-style:italic;color:var(--accent2);}
+    .hero-sub{color:var(--muted);font-size:1.05rem;max-width:520px;margin-bottom:36px;line-height:1.7;}
+    .hero-metrics{display:flex;gap:32px;margin-bottom:38px;}
+    .hm{border-left:3px solid var(--accent2);padding-left:14px;}
+    .hm strong{display:block;font-family:"Instrument Serif",serif;font-size:1.9rem;color:var(--accent);line-height:1;}
+    .hm span{font-size:0.8rem;color:var(--muted);font-weight:500;}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+    .btn{display:inline-flex;align-items:center;gap:7px;padding:12px 22px;border-radius:8px;font-size:0.88rem;font-weight:600;transition:all 0.2s ease;cursor:pointer;}
+    .btn:hover{transform:translateY(-2px);text-decoration:none;}
+    .btn-primary{background:var(--accent);color:white;border:none;box-shadow:0 2px 8px rgba(26,115,232,0.2);}
+    .btn-primary:hover{background:#1765cc;}
+    .btn-outline{background:transparent;color:var(--accent);border:1.5px solid var(--accent);}
+    .btn-outline:hover{background:var(--accent);color:white;}
+    .btn-ghost{background:white;color:var(--muted);border:1px solid var(--border);}
+    .btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+    .hero-photo-wrap{position:relative;}
+    .hero-photo-wrap::before{display:none;}
+    .hero-photo-wrap img{position:relative;z-index:1;width:100%;border-radius:18px;object-fit:cover;aspect-ratio:4/5;box-shadow:0 24px 60px rgba(26,58,92,0.18);display:block;}
+    .hero-badge{position:absolute;z-index:2;bottom:24px;left:-20px;background:white;border:1px solid var(--border);border-radius:12px;padding:12px 18px;box-shadow:0 8px 24px rgba(0,0,0,0.1);font-size:0.82rem;}
+    .hero-badge strong{display:block;color:var(--accent);font-size:1rem;font-weight:600;}
+    .hero-badge span{color:var(--muted);}
+    section{padding:72px 0;}
+    .section-label{font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent2);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+    .section-label::after{content:"";flex:1;max-width:48px;height:1.5px;background:var(--accent);border-radius:2px;}
+    .section-title{font-family:"Instrument Serif",serif;font-size:clamp(1.9rem,3vw,2.8rem);color:var(--accent);letter-spacing:-0.02em;margin-bottom:10px;line-height:1.15;}
+    .section-sub{color:var(--muted);max-width:620px;margin-bottom:40px;font-size:0.97rem;}
+    .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+    .feature-card{background:white;border:1px solid var(--border);border-radius:16px;padding:28px 24px;transition:transform 0.2s,box-shadow 0.2s;}
+    .feature-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(26,58,92,0.1);}
+    .fc-icon{width:42px;height:42px;border-radius:10px;background:var(--tag-bg);display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:1.3rem;}
+    .feature-card h3{font-size:1.05rem;font-weight:600;color:var(--accent);margin-bottom:8px;}
+    .feature-card p{color:var(--muted);font-size:0.92rem;line-height:1.6;}
+    .exp-grid{display:grid;grid-template-columns:1fr;gap:24px;align-items:start;}
+    .exp-sticky{position:sticky;top:90px;}
+    .timeline{display:grid;gap:20px;}
+    .tl-item{background:white;border:1px solid var(--border);border-radius:16px;padding:24px 26px;transition:border-color 0.2s,box-shadow 0.2s;width:100%;}
+    .tl-item:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(26,58,92,0.12);border-color:rgba(26,58,92,0.18);}
+    .tl-meta{font-size:0.8rem;font-weight:600;color:var(--accent2);margin-bottom:6px;letter-spacing:0.02em;}
+    .tl-item h3{font-size:1.05rem;font-weight:600;color:var(--accent);margin-bottom:6px;}
+    .tl-item p{color:var(--muted);font-size:0.91rem;line-height:1.65;}
+    .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .proj-card{background:white;border:1px solid var(--border);border-radius:16px;padding:26px;display:flex;flex-direction:column;transition:transform 0.2s,box-shadow 0.2s;}
+    .proj-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(26,58,92,0.1);}
+    .proj-card h3{font-size:1.02rem;font-weight:600;color:var(--accent);margin-bottom:10px;line-height:1.4;}
+    .proj-card p{color:var(--muted);font-size:0.9rem;line-height:1.65;margin-bottom:14px;}
+    .proj-card ul{padding-left:16px;margin-bottom:16px;flex:1;}
+    .proj-card li{color:var(--muted);font-size:0.88rem;line-height:1.6;margin-bottom:4px;}
+    .tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;}
+    .tag{font-size:0.73rem;font-weight:600;color:var(--tag-color);background:var(--tag-bg);padding:4px 9px;border-radius:999px;}
+    .skills-wrap{display:flex;flex-wrap:wrap;gap:10px;}
+    .skill{background:white;border:1px solid var(--border);padding:9px 14px;border-radius:8px;color:var(--muted);font-size:0.88rem;font-weight:500;transition:border-color 0.2s,color 0.2s;}
+    .skill:hover{border-color:var(--accent);color:var(--accent);}
+    .contact-box{background:#f8f9fa;border:1px solid var(--border);border-radius:20px;padding:48px 44px 28px;}
+    .contact-box h2{font-family:"Instrument Serif",serif;color:var(--text);font-size:2.2rem;letter-spacing:-0.02em;margin-bottom:12px;}
+    .contact-box p{color:var(--muted);font-size:1rem;max-width:540px;margin-bottom:28px;line-height:1.7;}
+    .contact-btns{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px;}
+    .cbtn{display:inline-flex;align-items:center;gap:7px;padding:11px 20px;border-radius:9px;font-size:0.87rem;font-weight:600;text-decoration:none;transition:opacity 0.15s,transform 0.15s;}
+    .cbtn:hover{opacity:0.88;transform:translateY(-1px);text-decoration:none;}
+    .cbtn-primary{background:#1a73e8;color:white;}
+    .cbtn-ghost{background:white;color:var(--text);border:1px solid var(--border);}
+    .contact-footer-line{border-top:1px solid rgba(255,255,255,0.1);padding-top:18px;color:rgba(255,255,255,0.28);font-size:0.8rem;}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.6s ease,transform 0.6s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .reveal-delay-1{transition-delay:0.1s;}
+    .reveal-delay-2{transition-delay:0.2s;}
+    .reveal-delay-3{transition-delay:0.3s;}
+    @media(max-width:960px){.hero{grid-template-columns:1fr;gap:40px;}.hero-photo-wrap{max-width:360px;margin:0 auto;}.hero-photo-wrap::before{display:none;}.exp-grid{grid-template-columns:1fr;}.exp-sticky{position:static;}.proj-grid,.feature-grid{grid-template-columns:1fr 1fr;}.nav-links{display:none;}}
+    @media(max-width:600px){.proj-grid,.feature-grid{grid-template-columns:1fr;}.hero-metrics{gap:20px;}.hero{padding:56px 0 48px;}.contact-box{padding:32px 24px 24px;}}
+  </style>
+</head>
+<body>
+<div class="floating-nav" id="floatingNav">
+  <a href="#experience">Experience</a>
+  <a href="#projects">Projects</a>
+  <a href="#skills">Skills</a>
+  <a href="https://medium.com/@palakshichoksi12" target="_blank" rel="noopener">Medium Articles</a>
+  <a href="#contact">Contact</a>
+</div>
+<header>
+  <div class="container">
+    <nav>
+      <div class="logo">Palakshi Choksi</div>
+      <div class="nav-links">
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="https://medium.com/@palakshichoksi12" target="_blank" rel="noopener">Medium Articles</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </div>
+</header>
+<main>
+  <section class="hero container" id="about">
+    <div>
+      <div class="hero-eyebrow">Data Scientist (Product Analyst)</div>
+      <h1>Turning data into decisions that <em>move metrics.</em></h1>
+      <p class="hero-sub">I am currently working as a Data Scientist II at AECOM with 3+ years of experience across.</p>
+      
+    </div>
+    <div class="hero-photo-wrap">
+      <img src="WhatsApp Image 2026-03-31 at 6.37.15 PM(1).jpeg" alt="Palakshi Choksi" />
+    </div>
+  </section>
+
+  
+
+  <section class="container reveal" id="experience">
+    <div class="exp-grid">
+      <div class="section-label">Experience</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-meta">AECOM · Data Scientist II · 2023–Present</div>
+          <h3>Product Analytics, Experimentation, Causal Inference, and Predictive Modeling</h3>
+          <p>Built machine learning and analytics solutions across infrastructure products including PipeInsights and PlanEngage, connecting product usage, operational outcomes, and stakeholder decision-making.</p>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-meta">Danfoss · Data Scientist · 2022–2022</div>
+          <h3>Automation, Data Pipelines, and Dashboards</h3>
+          <p>Worked with the FP&A team to develop ETL pipelines and executive dashboards for financial and operational reporting.</p>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-meta">Northeastern University · Graduate Teaching Assistant · 2021–2022</div>
+          <h3>Data Visualization, Mentoring</h3>
+          <p>Supported students in translating complex data into clear visual narratives, strengthening communication across technical and non-technical audiences.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container reveal" id="projects">
+    <div class="section-label">Projects</div>
+    
+    <div class="proj-grid">
+      <div class="proj-card">
+        <h3>Amazon Product Funnel Analysis</h3>
+        <ul>
+          <li>Built SQL-based funnel and retention analysis workflows</li>
+          <li>Tracked feature adoption and user engagement metrics</li>
+          <li>Recommended product changes using behavioral insights</li>
+        </ul>
+        <div class="tag-row"><span class="tag">SQL</span><span class="tag">Product Analytics</span><span class="tag">A/B Testing</span></div>
+      </div>
+
+      <div class="proj-card">
+        <h3>Walmart Causal Inference & Experimentation</h3>
+        
+        <ul>
+          <li>Used Difference-in-Differences for rollout evaluation</li>
+          <li>Compared treatment and control population behavior</li>
+          <li>Measured impact on operational efficiency and cost</li>
+        </ul>
+        <div class="tag-row"><span class="tag">Causal Inference</span><span class="tag">Experimentation</span><span class="tag">Statistics</span></div>
+      </div>
+
+      <div class="proj-card">
+        <h3>Netflix Watchtime Forecasting</h3>
+        
+        <ul>
+          <li>Developed machine learning forecasting models for watchtime prediction</li>
+          <li>Analyzed user engagement and viewing behavior patterns</li>
+          <li>Built dashboards to monitor content performance metrics</li>
+        </ul>
+        <div class="tag-row"><span class="tag">Python</span><span class="tag">Machine Learning</span><span class="tag">Azure ML</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container reveal" id="skills">
+    <div class="section-label">Skills</div>
+    <h2 class="section-title">Tools I use to turn ambiguity into decisions.</h2>
+    
+    <div class="skills-wrap">
+      <span class="skill">SQL</span><span class="skill">Python</span><span class="skill">A/B Testing</span><span class="skill">Causal Inference</span><span class="skill">Machine Learning Modeling</span><span class="skill">Statistical Analysis</span><span class="skill">Exploratory Data Analysis</span><span class="skill">Microsoft Azure</span><span class="skill">Tableau</span><span class="skill">Power BI</span><span class="skill">Looker</span>
+    </div>
+  </section>
+
+  <section class="container reveal" id="articles">
+    <div class="section-label">Medium Articles</div>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <h3>How Pen, Paper, and ChatGPT Changed the Way I Practice SQL</h3>
+        <div style="margin-top:18px; margin-bottom:18px;">
+          <img src="1_LlyWmDm9wUCDOCiXxAowuQ.webp" alt="SQL Article" style="width:100%; border-radius:14px; object-fit:cover; display:block;" />
+        </div>
+        <div style="margin-top:18px;">
+          <a href="https://medium.com/@palakshichoksi12/how-pen-paper-and-chatgpt-changed-the-way-i-practice-sql-77cc04c91cdf" target="_blank" rel="noopener" style="font-size:0.9rem;font-weight:600;color:var(--accent);">Read Article →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container reveal" id="contact">
+    <div class="contact-box">
+      <h2 style="color:var(--accent);">Let’s Connect</h2>
+      <p>I’m interested in Product Data Scientist roles where I can work on experimentation, user behavior, AI products, and data-driven product strategy.</p>
+      <div class="contact-btns">
+        <a class="cbtn cbtn-primary" href="mailto:palakshichoksi12@gmail.com">palakshichoksi12@gmail.com</a>
+        <a class="cbtn cbtn-ghost" href="https://www.linkedin.com/in/palakshi-choksi/" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.8v2.3h.1c.7-1.3 2.3-2.7 4.8-2.7 5.1 0 6 3.3 6 7.6V24h-5v-7.3c0-1.7 0-4-2.5-4s-2.9 1.9-2.9 3.9V24h-5V8z"/></svg> LinkedIn</a>
+        <a class="cbtn cbtn-ghost" href="https://github.com/Palakshi123" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12A11.5 11.5 0 008.2 22.9c.6.1.8-.2.8-.6v-2.2c-3.1.7-3.8-1.3-3.8-1.3-.5-1.2-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1 1.7.8 2 1.3.9 1.5 2.4 1.1 3 .8.1-.7.4-1.1.7-1.4-2.5-.3-5.2-1.2-5.2-5.6 0-1.2.4-2.1 1.1-2.9-.1-.3-.5-1.5.1-3.1 0 0 .9-.3 3 .1a10.5 10.5 0 015.5 0c2.1-.4 3-.1 3-.1.6 1.6.2 2.8.1 3.1.7.8 1.1 1.7 1.1 2.9 0 4.4-2.7 5.3-5.2 5.6.4.3.8 1 .8 2v3c0 .4.2.7.8.6A11.5 11.5 0 0023.5 12C23.5 5.65 18.35.5 12 .5z"/></svg> GitHub</a>
+      </div>
+      
+    </div>
+  </section>
+</main>
+<script>
+  const floatingNav = document.getElementById('floatingNav');
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 180) {
+      floatingNav.classList.add('visible');
+      header.classList.add('hidden');
+    } else {
+      floatingNav.classList.remove('visible');
+      header.classList.remove('hidden');
+    }
+  });
+
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add('visible'); }});
+  },{threshold:0.12});
+  reveals.forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
 
